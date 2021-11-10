@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap");
 
 :root {
   --body-color: #fff;
@@ -26,7 +26,7 @@ body {
   justify-content: center;
   height: 100vh;
   background-color: var(--body-color);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: 0.5s ease-in-out;
 }
 
@@ -63,35 +63,33 @@ body {
   transform: rotate(-25deg);
 }
 
-#input-field{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    
+#input-field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
 
-#input-field #input-task{
-    width: 80%;
-    height: 80px;
-    font-size:150%;
-    padding-inline:15px;
-    
+#input-field #input-task {
+  width: 80%;
+  height: 80px;
+  font-size: 150%;
+  padding-inline: 15px;
 }
 
-#input-field #add-task{
-    width: 19%;
-    height: 80px;
-    font-size:150%;
-    cursor: pointer;
+#input-field #add-task {
+  width: 19%;
+  height: 80px;
+  font-size: 150%;
+  cursor: pointer;
 }
 
-#tasks-wrapper{
+#tasks-wrapper {
   width: 100%;
   margin-top: 10px;
 }
 
-.task{
+.task {
   display: flex;
   justify-content: space-between;
   background-color: rgb(202, 202, 202);
@@ -100,11 +98,16 @@ body {
   margin-bottom: 10px;
 }
 
+.task.done .content {
+  text-decoration: line-through;
+}
+
 .task .button-parent {
   display: flex;
 }
 
-#edit,#delete{
+#edit,
+#delete {
   font-size: 25px;
   padding: 7px;
   border-radius: 5px;
@@ -112,19 +115,18 @@ body {
   margin: 3px;
   cursor: pointer;
   color: #333;
-  transition: .3s;
+  transition: 0.3s;
 }
-
 
 #delete:hover {
   color: rgb(235, 79, 79);
 }
 
-#edit:hover{
+#edit:hover {
   color: rgb(26, 163, 88);
 }
 
-#add-task:active, #add-task:hover{
+#add-task:active,
+#add-task:hover {
   color: rgb(26, 163, 88);
-  
 }
