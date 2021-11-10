@@ -1,3 +1,47 @@
+
+let inputFiled=document.getElementById("input-task");
+let  addBtn=document.getElementById('add-task')
+let arrayItem=[];
+let specialId = new Date().getTime();
+function addTask(){
+let tasks={
+    val: inputFiled.value,
+    id: `${specialId}`, 
+    done:false
+}
+arrayItem.push(tasks)
+localStorage.setItem("tasks",JSON.stringify(tasks))
+}
+
+function displayTask(){
+let warpperTask=document.getElementById('tasks-wrapper')
+let divTask=document.createElement("div")
+divTask.setAttribute('class','task')
+divTask.setAttribute("data-id", specialId);
+let content=document.createElement("span")
+content.setAttribute('class','content')
+divTask.appendChild(content)
+let editDelete=createElement('div')
+editDelete.setAttribute('class','button-parent')
+let btnDelete=document.createElement('button')
+btnDelete.setAttribute('id','delete')
+editDelete.appendChild(btnDelete)
+let btnEdit=document.createElement('button')
+btnEdit.setAttribute('id','edit')
+editDelete.appendChild(btnEdit)
+divTask.appendChild(editDelete)
+warpperTask.prependChild(divTask)
+}
+addBtn.addEventListener('click', addTask)
+addBtn.addEventListener('click', displayTask)
+inputFiled.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+     addTask()
+     displayTask()
+    }
+});
+
+
 // Delete Task.
 function delTask(e) {
   if (!e.target.matches("#delete")) return;
