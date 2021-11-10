@@ -21,7 +21,7 @@ divTask.setAttribute("data-id", specialId);
 let content=document.createElement("span")
 content.setAttribute('class','content')
 divTask.appendChild(content)
-let editDelete=createElement('div')
+let editDelete=document.createElement('div')
 editDelete.setAttribute('class','button-parent')
 let btnDelete=document.createElement('button')
 btnDelete.setAttribute('id','delete')
