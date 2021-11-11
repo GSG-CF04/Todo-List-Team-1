@@ -98,12 +98,15 @@ body {
   margin-bottom: 10px;
 }
 
-.task.done .content {
+.task .content:focus {
+  outline: none;
+}
+.content.done {
   text-decoration: line-through;
 }
-
 .task .button-parent {
   display: flex;
+  align-items: center;
 }
 
 #edit,
@@ -129,4 +132,48 @@ body {
 #add-task:active,
 #add-task:hover {
   color: rgb(26, 163, 88);
+}
+
+.checkmark {
+  width: 37px;
+  height: 44px;
+  background-color: #efefef;
+  margin-right: 3px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkmark::before {
+  content: "";
+  position: absolute;
+  background-color: green;
+  width: 4px;
+  height: 25px;
+  left: 60%;
+  top: 25%;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(38deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  background-color: green;
+  width: 4px;
+  height: 11px;
+  left: 33%;
+  top: 55%;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(136deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
 }
