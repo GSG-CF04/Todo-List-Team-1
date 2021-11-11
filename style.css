@@ -75,8 +75,8 @@ body {
   height: 80px;
   font-size: 150%;
   padding-inline: 15px;
+  outline: none;
 }
-
 #input-field #add-task {
   width: 19%;
   height: 80px;
