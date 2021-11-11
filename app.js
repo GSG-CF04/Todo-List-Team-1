@@ -43,6 +43,9 @@ function editTask(e) {
     });
     allTasks[taskIdx].val = content.textContent;
     localStorage.tasks = JSON.stringify(allTasks);
+  }
+  n++;
+}
 //getting required elements
 let inputFiled = document.getElementById("input-task");
 let addBtn = document.getElementById("add-task");
@@ -114,6 +117,8 @@ function switchTheme() {
   } else {
     setDarkTheme();
     darkMode = localStorage.setItem("dark", "off");
+  }
+}
 addBtn.addEventListener("click", addTask);
 addBtn.addEventListener("click", displayTask);
 inputFiled.addEventListener("keypress", function (e) {
@@ -122,5 +127,3 @@ inputFiled.addEventListener("keypress", function (e) {
     displayTask();
   }
 });
-
-
