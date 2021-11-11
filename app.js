@@ -136,6 +136,7 @@ inputFiled.addEventListener("keypress", function (e) {
 
 // Done task
 function done(obj) {
+  obj.classList.toggle("done");
   let v = obj.parentElement.parentElement;
   v.children[0].classList.toggle("done");
   let allTasks = JSON.parse(localStorage.tasks);
