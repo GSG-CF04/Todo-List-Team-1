@@ -90,10 +90,17 @@ body {
 .task {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(202, 202, 202);
+  background-color: #545b60;
+  color: #fee715ff;
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.task:nth-child(even) {
+  background-color: #fee715ff;
+  color: #545b60;
 }
 
 .task .content:focus {
