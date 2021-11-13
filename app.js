@@ -18,7 +18,6 @@ function delTask(e) {
 }
 
 // Edit Task.
-let n = 2;
 function editTask(e) {
   if (!e.target.matches(".far.fa-edit") && !e.target.matches("#edit")) return;
   // Edit content of task in the page
@@ -29,22 +28,25 @@ function editTask(e) {
       : t.parentElement.dataset.id ===
           e.target.parentElement.parentElement.parentElement.dataset.id;
   })[0];
-  if (n % 2 === 0) {
-    content.setAttribute("contenteditable", "true");
-    content.focus();
-  } else {
-    content.removeAttribute("contenteditable");
-    // Edit content of current element in localStorage.
-    let allTasks = JSON.parse(localStorage.tasks);
-    let taskIdx = allTasks.findIndex((t) => {
-      return e.target.matches("#edit")
-        ? t.id == e.target.parentElement.parentElement.dataset.id
-        : t.id == e.target.parentElement.parentElement.parentElement.dataset.id;
-    });
-    allTasks[taskIdx].val = content.textContent;
-    localStorage.tasks = JSON.stringify(allTasks);
-  }
-  n++;
+
+  content.setAttribute("contenteditable", "true");
+  content.focus();
+  // Edit content of current element in localStorage.
+  let allTasks = JSON.parse(localStorage.tasks);
+  let taskIdx = allTasks.findIndex((t) => {
+    return e.target.matches("#edit")
+      ? t.id == e.target.parentElement.parentElement.dataset.id
+      : t.id == e.target.parentElement.parentElement.parentElement.dataset.id;
+  });
+  allTasks[taskIdx].val = content.textContent;
+  localStorage.tasks = JSON.stringify(allTasks);
+  content.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      if (e.currentTarget.hasAttribute("contenteditable")) {
+        e.currentTarget.removeAttribute("contenteditable");
+      }
+    }
+  });
 }
 //getting required elements
 let inputFiled = document.getElementById("input-task");
@@ -73,6 +75,10 @@ function displayTask() {
     content.textContent = inputFiled.value;
     divTask.appendChild(content);
     let editDelete = document.createElement("div");
+    let checkmark = document.createElement("div");
+    checkmark.setAttribute("onclick", "done(this)");
+    checkmark.className = "checkmark";
+    editDelete.append(checkmark);
     editDelete.setAttribute("class", "button-parent");
     let btnDelete = document.createElement("button");
     let delIcon = document.createElement("i");
@@ -127,3 +133,20 @@ inputFiled.addEventListener("keypress", function (e) {
     displayTask();
   }
 });
+
+// Done task
+function done(obj) {
+  obj.classList.toggle("done");
+  let v = obj.parentElement.parentElement;
+  v.children[0].classList.toggle("done");
+  let allTasks = JSON.parse(localStorage.tasks);
+  let cur = allTasks.findIndex((t) => {
+    return t.id == v.dataset.id;
+  });
+  if (allTasks[cur].done) {
+    allTasks[cur].done = false;
+  } else {
+    allTasks[cur].done = true;
+  }
+  localStorage.tasks = JSON.stringify(allTasks);
+}
