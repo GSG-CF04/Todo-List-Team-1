@@ -1,3 +1,35 @@
+// Render Stored Tasks In localStorage onload
+if (localStorage.tasks !== "[]") {
+  let tasksWrapper = document.querySelector("#tasks-wrapper");
+  let allTasks = JSON.parse(localStorage.tasks);
+  allTasks.forEach((t) => {
+    let task = document.createElement("div");
+    task.className = "task";
+    task.setAttribute("data-id", t.id);
+    let content = document.createElement("span");
+    content.className = t.done ? "content done" : "content";
+    content.textContent = t.val;
+    let btnsWrapper = document.createElement("div");
+    btnsWrapper.className = "button-parent";
+    let done = document.createElement("div");
+    done.className = t.done ? "checkmark done" : "checkmark";
+    done.setAttribute("onclick", "done(this)");
+    let del = document.createElement("button");
+    del.id = "delete";
+    let delIco = document.createElement("i");
+    delIco.className = "far fa-trash-alt";
+    let edit = document.createElement("button");
+    edit.id = "edit";
+    let editIco = document.createElement("i");
+    editIco.className = "far fa-edit";
+    del.append(delIco);
+    edit.append(editIco);
+    btnsWrapper.append(done, del, edit);
+    task.append(content, btnsWrapper);
+    tasksWrapper.prepend(task);
+  });
+}
+
 // Delete task
 function delTask(e) {
   if (!e.target.matches(".far.fa-trash-alt") && !e.target.matches("#delete"))
