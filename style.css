@@ -1,3 +1,20 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 :root {
   --body-color: #fff;
   --main-div-bg: #f0f2fa;
@@ -5,17 +22,23 @@
   --text-color: #63687e;
 }
 
-.dark {
+[data-theme="dark"] {
   --body-color: #1f212e;
   --main-div-bg: #252a41;
   --heading-color: #8b97c6;
-  --text-color: #fff;
+  --text-color: #fee715ff;
+  --text-para: #ccc;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
 }
 
 body {
@@ -23,23 +46,28 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: var(--body-color);
   font-family: "Poppins", sans-serif;
-  transition: 0.5s ease-in-out;
+  background-color: var(--body-color);
+}
+.toggle-btn {
+  font-size: 30px;
+  color: #ddd;
+  margin: 10px 10px 0 0;
+}
+
+.todo {
+  font-size: 45px;
 }
 
 #main-div {
   width: 500px;
   max-width: 100%;
-
-  height: 550px;
+  height: 580px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--main-div-bg);
-  padding: 15px;
+  padding: 0px 15px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 #main-div h3 {
@@ -49,7 +77,7 @@ body {
 
 #main-div p {
   text-align: center;
-  color: var(--text-color);
+  color: var(--text-para);
 }
 
 .fas {
@@ -65,26 +93,36 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 30px;
+  padding: 0 15px 0 5px;
 }
 
 #input-field #input-task {
   width: 80%;
-  height: 80px;
-  font-size: 150%;
-  padding-inline: 15px;
+  height: 65px;
+  font-size: 100%;
+  padding-inline: 10px;
   outline: none;
+  border: 1px solid #ccc;
+  border-radius: 15px;
 }
 #input-field #add-task {
   width: 19%;
-  height: 80px;
+  height: 65px;
   font-size: 150%;
   cursor: pointer;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  margin-left: 10px;
 }
 
 #tasks-wrapper {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 25px;
+  min-height: 390px;
+  overflow-y: auto;
+  padding: 0 15px 0 5px;
 }
 
 .task {
@@ -95,17 +133,32 @@ body {
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 10px;
   font-size: 1.2rem;
+  background-color: #545b60;
+  color: #fee715ff;
+  transition: 0s;
+  -webkit-transition: 0s;
+  -moz-transition: 0s;
+  -ms-transition: 0s;
+  -o-transition: 0s;
 }
-
 .task:nth-child(even) {
   background-color: #fee715ff;
   color: #545b60;
+}
+.task .content {
+  margin-right: 5px;
+}
+
+.task.done .content {
+  text-decoration: line-through;
 }
 
 .task .content:focus {
   outline: none;
 }
+
 .content.done {
   text-decoration: line-through;
 }
@@ -125,6 +178,11 @@ body {
   cursor: pointer;
   color: #333;
   transition: 0.3s;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
 }
 
 #delete:hover {
@@ -134,10 +192,9 @@ body {
 #edit:hover {
   color: rgb(26, 163, 88);
 }
-
 #add-task:active,
 #add-task:hover {
-  color: rgb(26, 163, 88);
+  color: rgb(10, 10, 131);
 }
 
 .checkmark {
