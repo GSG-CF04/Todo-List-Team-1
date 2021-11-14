@@ -22,7 +22,7 @@
   --text-color: #63687e;
 }
 
-[data-theme="dark"] {
+[data-dark] {
   --body-color: #1f212e;
   --main-div-bg: #252a41;
   --heading-color: #8b97c6;

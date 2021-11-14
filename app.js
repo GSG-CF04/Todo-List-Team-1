@@ -3,19 +3,13 @@ let toggleBtn = document.querySelector(".toggle-btn");
 let body = document.body;
 
 function setDarkTheme() {
-  if (body.hasAttribute("data-theme")) {
-    body.removeAttribute("data-theme");
-  } else {
-    body.setAttribute("data-theme", "dark");
-  }
+  body.toggleAttribute("data-dark");
 }
 
 function updateTheme() {
-  if (!localStorage.theme || localStorage.theme === "light") {
-    localStorage.theme = "dark";
-  } else {
-    localStorage.theme = "light";
-  }
+  localStorage.dark === "off" || !localStorage.dark
+    ? (localStorage.dark = "on")
+    : (localStorage.dark = "off");
 }
 
 toggleBtn.onclick = () => {
@@ -56,9 +50,7 @@ if (localStorage.tasks !== "[]" && localStorage.tasks) {
 }
 
 // Set Theme If It Was Selected Previously
-if (localStorage.theme === "dark") {
-  body.setAttribute("data-theme", localStorage.theme);
-}
+if (localStorage.dark === "on") body.toggleAttribute("data-dark");
 
 // Add A Task
 let inputFiled = document.getElementById("input-task");
