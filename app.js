@@ -147,17 +147,17 @@ function editTask(e) {
   content.setAttribute("contenteditable", "true");
   content.focus();
   // Edit content of current element in localStorage.
-  let allTasks = JSON.parse(localStorage.tasks);
-  let taskIdx = allTasks.findIndex((t) => {
-    return e.target.matches("#edit")
-      ? t.id == e.target.parentElement.parentElement.dataset.id
-      : t.id == e.target.parentElement.parentElement.parentElement.dataset.id;
-  });
-  // allTasks[taskIdx].val = content.textContent;
-  content.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      if (e.currentTarget.hasAttribute("contenteditable")) {
-        e.currentTarget.removeAttribute("contenteditable");
+  content.addEventListener("keypress", (ev) => {
+    if (ev.key === "Enter") {
+      let allTasks = JSON.parse(localStorage.tasks);
+      let taskIdx = allTasks.findIndex((t) => {
+        return e.target.matches("#edit")
+          ? t.id == e.target.parentElement.parentElement.dataset.id
+          : t.id ==
+              e.target.parentElement.parentElement.parentElement.dataset.id;
+      });
+      if (ev.currentTarget.hasAttribute("contenteditable")) {
+        ev.currentTarget.removeAttribute("contenteditable");
         allTasks[taskIdx].val = content.textContent;
         localStorage.tasks = JSON.stringify(allTasks);
       }
